@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     if ($username === $usern && $password === $passw) {
-        header("Location: http://127.0.0.1:5500/profile.html");
+        header("Location: index.html");
         exit();
     } else {
         $error_message = "Invalid username or password.";
