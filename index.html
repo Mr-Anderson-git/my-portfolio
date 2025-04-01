@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="inex.css"> 
+    <link rel="stylesheet" href="index.css">
     <title>Login</title>
 </head>
 <body>
     <div class="Log-cont">
         <h1>First login to access</h1>
-        <form action="log.php" method="POST">
+        <form id="login-form">
             <label for="fname">Name:</label><br>
             <input type="text" id="fname" name="fname" value=""><br>
 
@@ -19,6 +19,27 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+
+    <script>
+        // Define valid credentials (for demonstration purposes only)
+        const validUsername = "admin";
+        const validPassword = "admin";
+
+        // Handle form submission
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevent form from submitting to the server
+
+            const username = document.getElementById("fname").value;
+            const password = document.getElementById("pass").value;
+
+            if (username === validUsername && password === validPassword) {
+                window.location.href = "profile.html";  // Redirect to profile page
+            } else {
+                alert("Invalid username or password.");
+            }
+        });
+    </script>
 </body>
 </html>
+
 
