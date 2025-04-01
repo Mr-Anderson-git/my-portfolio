@@ -3,7 +3,7 @@
 $valid_username = "admin";
 $valid_password = "admin";
 
-// Check if the form is submitted
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $username = $_POST['username'];
