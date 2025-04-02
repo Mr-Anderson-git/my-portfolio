@@ -9,12 +9,38 @@
 <body>
     <div class="Log-cont">
         <h1>First login to access</h1>
-        <form action="log.php">
             <label for="fname">Name:</label><br>
             <input type="text" id="fname" name="fname" value=""><br>
             <label for="lname">Password:</label><br>
             <input type="password" id="pass" name="pass" value=""><br><br>
             <input type="submit" value="Submit">
+        <script>
+        
+        const users = {
+            'user1': 'password1',
+            'user2': 'password2',
+            'user3': 'password3'
+        };
+
+        
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+           
+            if (users[username] && users[username] === password) {
+               
+                localStorage.setItem('username', username); 
+                window.location.href = 'profile.html'; 
+            } else {
+               
+                document.getElementById('errorMessage').textContent = 'Incorrect username or password. Please try again.';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
         </form>
     </div>
 </body>
