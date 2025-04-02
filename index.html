@@ -5,42 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="inex.css">
     <title>Login</title>
+    <style>
+        .error { color: red; }
+    </style>
 </head>
 <body>
     <div class="Log-cont">
         <h1>First login to access</h1>
+
+       
+        <div id="errorMessage" class="error" style="display: none;"></div>
+
+        
+        <form id="loginForm">
             <label for="fname">Name:</label><br>
             <input type="text" id="fname" name="fname" value=""><br>
-            <label for="lname">Password:</label><br>
+
+            <label for="pass">Password:</label><br>
             <input type="password" id="pass" name="pass" value=""><br><br>
+
             <input type="submit" value="Submit">
-        <script>
+        </form>
+    </div>
+
+    <script>
         
         const users = {
             'admin': 'admin',
+            
         };
 
         
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); 
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const username = document.getElementById('fname').value;
+            const password = document.getElementById('pass').value;
 
-           
+            
             if (users[username] && users[username] === password) {
-               
+                
                 localStorage.setItem('username', username); 
-                window.location.href = 'profile.html'; 
+                window.location.href = 'profile.html';
             } else {
-               
+                
                 document.getElementById('errorMessage').textContent = 'Incorrect username or password. Please try again.';
                 document.getElementById('errorMessage').style.display = 'block';
             }
         });
     </script>
-        </form>
-    </div>
+
 </body>
 </html>
 
