@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cyber-justice — Кибербезопасность</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1e293b;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .logo-area {
+            font-size: 24px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #38bdf8;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        section {
+            padding: 100px 0 60px 0;
+            min-height: auto;
+        }
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding-top: 140px;
+        }
+        .hero-text {
+            flex: 1;
+        }
+        .hero-text h1 {
+            font-size: 42px;
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+        .hero-text p {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #38bdf8;
+            position: relative;
+        }
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .service-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 25px;
+            width: calc(33.333% - 14px);
+            min-width: 280px;
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #f1f5f9;
+        }
+        .service-card p {
+            color: #94a3b8;
+            font-size: 15px;
+        }
+        .price-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: stretch;
+        }
+        .price-card {
+            background-color: #1e293b;
+            border: 2px solid #334155;
+            border-radius: 12px;
+            padding: 35px 25px;
+            width: calc(33.333% - 14px);
+            min-width: 280px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .price-card.featured {
+            border-color: #38bdf8;
+            background-color: #1e293b;
+        }
+        .price-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .price-cost {
+            font-size: 36px;
+            font-weight: 800;
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+        .price-features {
+            list-style: none;
+            color: #94a3b8;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .price-features li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .price-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0ea5e9;
+        }
+        footer {
+            background-color: #0f172a;
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+            border-top: 1px solid #1e293b;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 15px;
+            }
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 180px;
+            }
+            .hero-text h1 {
+                font-size: 32px;
+            }
+            .service-card, .price-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">cyber-justice</div>
+        <nav>
+            <a href="#about">О компании</a>
+            <a href="#services">Услуги</a>
+            <a href="#pricing">Тарифы</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <section id="about" class="hero-section">
+            <div class="hero-text">
+                <h1>Надежная защита вашей IT-инфраструктуры</h1>
+                <p>Компания <strong>cyber-justice</strong> обеспечивает комплексную информационную безопасность для бизнеса любого масштаба. Мы выстраиваем непреодолимые барьеры для злоумышленников и помогаем вовремя находить уязвимые места.</p>
+                <p>Наш опыт на рынке составляет <strong>более 10+ лет</strong>. За это время мы успешно защитили сотни серверов, локальных сетей и веб-ресурсов от сложнейших целевых атак.</p>
+            </div>
+            <div class="hero-image">
+                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ4-FEnhMD1e2EEkrbWTpbXSHdVFG-cJV6-Y2pTGQmDdte61Ek1m_9j6jMTnQK8dbbddFwY7BSnTzzn1j0" alt="Cyber Security Shield">
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Аудит безопасности</h3>
+                    <p>Глубокий анализ защищенности ваших серверов, внутренних корпоративных сетей, баз данных и веб-приложений.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Тестирование безопасности</h3>
+                    <p>Имитация реальных хакерских атак (пентест) на инфраструктуру сетей и веб-приложений для поиска критических брешей.</p>
+                </div>
+                <div class="service-card">
+                    <h3>SOC аутсорсинг</h3>
+                    <p>Передача мониторинга инцидентов под контроль нашего оперативного центра безопасности в режиме 24/7.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Расследование инцидентов</h3>
+                    <p>Оперативное реагирование на взломы, выявление точек компрометации, ликвидация последствий и сбор доказательств.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Обучение персонала ИБ</h3>
+                    <p>Проведение тренингов для сотрудников по кибергигиене, защите от фишинга и основам социальной инженерии.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing">
+            <h2 class="section-title">Стоимость услуг</h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <div>
+                        <div class="price-name">Разовый тариф</div>
+                        <div class="price-cost">от 5 000$</div>
+                        <ul class="price-features">
+                            <li>Зависит от выбранной услуги</li>
+                            <li>Цена формируется из размера работы</li>
+                            <li>Полный отчет по итогам проверки</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn">Заказать</a>
+                </div>
+                <div class="price-card featured">
+                    <div>
+                        <div class="price-name">Ежемесячный (Аутсорсинг)</div>
+                        <div class="price-cost">5 500$ / мес</div>
+                        <ul class="price-features">
+                            <li>Непрерывный мониторинг систем</li>
+                            <li>Техническая поддержка 24/7</li>
+                            <li>Быстрое реагирование на угрозы</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn">Подключить</a>
+                </div>
+                <div class="price-card">
+                    <div>
+                        <div class="price-name">Ежегодный тариф</div>
+                        <div class="price-cost">25 000$ / год</div>
+                        <ul class="price-features">
+                            <li>Любые услуги без ограничений</li>
+                            <li>Приоритетное обслуживание</li>
+                            <li>Регулярные комплексные проверки</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn">Выбрать</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 cyber-justice. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
