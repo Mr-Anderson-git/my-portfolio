@@ -3,17 +3,15 @@ const productList = document.getElementById('product-list');
 const form = document.getElementById('product-form');
 const getButton = document.getElementById('get-products-btn');
 
-let productsArray = []; 
-
 getButton.addEventListener('click', async () => {
     try {
         getButton.textContent = 'Загрузка...';
         getButton.disabled = true;
 
         const response = await fetch(API_URL);
-        productsArray = await response.json();
+        const products = await response.json();
         
-        renderProducts(productsArray);
+        renderProducts(products);
         
         getButton.textContent = 'Загрузить все товары';
         getButton.disabled = false;
@@ -36,7 +34,7 @@ function renderProducts(products) {
             <p><strong>Категория:</strong> ${product.category}</p>
             <img src="${product.image}" alt="Изображение товара">
             <br>
-            <button class="btn-delete" onclick="deleteProduct(${product.id})">Удалить</button>
+            <button class="btn-delete" onclick="deleteProduct(${product.id}, this)">Удалить</button>
         `;
         productList.appendChild(productDiv);
     });
@@ -63,9 +61,17 @@ form.addEventListener('submit', async (e) => {
         
         createdProduct.id = Date.now(); 
 
-        productsArray.unshift(createdProduct); 
-        
-        renderProducts(productsArray);
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product-card';
+        productDiv.innerHTML = `
+            <h3>${createdProduct.title}</h3>
+            <p><strong>Цена:</strong> $${createdProduct.price}</p>
+            <p><strong>Категория:</strong> ${createdProduct.category}</p>
+            <img src="${createdProduct.image}" alt="Изображение товара">
+            <br>
+            <button class="btn-delete" onclick="deleteProduct(${createdProduct.id}, this)">Удалить</button>
+        `;
+        productList.prepend(productDiv);
         
         form.reset();
     } catch (error) {
@@ -73,7 +79,7 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-async function deleteProduct(id) {
+async function deleteProduct(id, btnElement) {
     if (!confirm('Удалить этот товар?')) return;
 
     try {
@@ -81,9 +87,7 @@ async function deleteProduct(id) {
             method: 'DELETE'
         });
         
-        productsArray = productsArray.filter(product => product.id !== id);
-        
-        renderProducts(productsArray);
+        btnElement.parentElement.remove();
         
     } catch (error) {
         console.error(error);
